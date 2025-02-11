@@ -484,10 +484,7 @@ bool CGameControllerBaseFng::OnCharacterTakeDamage(vec2 &Force, int &Dmg, int &F
 			pKiller->m_Stats.m_ShotsHit++;
 		}
 
-		pKiller->GetCharacter()->m_ReloadTimer /= 2;
-		char aBuf[50];
-		str_format(aBuf, 50, "FireDelay: %d", pKiller->GetCharacter()->m_ReloadTimer);
-		GameServer()->SendChatTarget(pKiller->GetCid(), aBuf);
+		pKiller->GetCharacter()->m_OnHitFNG = true;
 
 		pKiller->IncrementScore();
 		AddTeamscore(pKiller->GetTeam(), 1);

@@ -854,6 +854,9 @@ void CCharacter::Tick()
 	m_PrevInput = m_Input;
 
 	m_PrevPos = m_Core.m_Pos;
+
+	if(m_OnHitFNG)
+		m_ReloadTimer /= 2;
 }
 
 void CCharacter::TickDeferred()
