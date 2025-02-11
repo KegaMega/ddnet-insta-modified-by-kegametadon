@@ -484,7 +484,10 @@ bool CGameControllerBaseFng::OnCharacterTakeDamage(vec2 &Force, int &Dmg, int &F
 			pKiller->m_Stats.m_ShotsHit++;
 		}
 
-		pKiller->GetCharacter()->m_OnHitFNG = true;
+		if(pKiller->GetCharacter()->m_ReloadTimer==0)
+			pKiller->GetCharacter()->m_OnHitFNG = true;
+		else
+			pKiller->GetCharacter()->m_ReloadTimer /= 2;
 
 		pKiller->IncrementScore();
 		AddTeamscore(pKiller->GetTeam(), 1);
