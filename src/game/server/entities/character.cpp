@@ -629,7 +629,10 @@ void CCharacter::FireWeapon()
 		GetTuning(m_TuneZone)->Get(38 + m_Core.m_ActiveWeapon, &FireDelay);
 		m_ReloadTimer = FireDelay * Server()->TickSpeed() / 1000;
 		if(m_OnHitFNG)
-			m_ReloadTimer /= 2; m_OnHit = false;
+		{
+			m_ReloadTimer /= 2;
+			m_OnHitFNG = false;
+		}
 		char aBuf[50];
 		str_format(aBuf, 50, "FireDelay: %d", m_ReloadTimer);
 		GameServer()->SendChatTarget(m_pPlayer->GetCid(), aBuf);
